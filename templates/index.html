@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Тетрис на Python</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><i class="fas fa-gamepad"></i> Веб-Тетрис на Python</h1>
+            <p class="subtitle">Классическая игра, созданная с использованием Flask</p>
+        </header>
+
+        <div class="game-area">
+            <div class="left-panel">
+                <div class="game-board">
+                    <canvas id="tetris" width="300" height="600"></canvas>
+                </div>
+                
+                <div class="controls">
+                    <button id="startBtn" class="btn btn-start">
+                        <i class="fas fa-play"></i> Старт
+                    </button>
+                    <button id="pauseBtn" class="btn btn-pause">
+                        <i class="fas fa-pause"></i> Пауза
+                    </button>
+                    <button id="resetBtn" class="btn btn-reset">
+                        <i class="fas fa-redo"></i> Сброс
+                    </button>
+                </div>
+            </div>
+
+            <div class="right-panel">
+                <div class="info-panel">
+                    <div class="info-box">
+                        <h3><i class="fas fa-chart-line"></i> Статистика</h3>
+                        <div class="stats">
+                            <div class="stat-item">
+                                <span class="stat-label">Очки:</span>
+                                <span id="score" class="stat-value">0</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-label">Уровень:</span>
+                                <span id="level" class="stat-value">1</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-label">Линии:</span>
+                                <span id="lines" class="stat-value">0</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-label">Следующая:</span>
+                                <div class="next-piece">
+                                    <canvas id="nextPiece" width="80" height="80"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="info-box">
+                        <h3><i class="fas fa-keyboard"></i> Управление</h3>
+                        <div class="controls-list">
+                            <div class="control-item">
+                                <span class="key">← →</span>
+                                <span class="action">Движение влево/вправо</span>
+                            </div>
+                            <div class="control-item">
+                                <span class="key">↓</span>
+                                <span class="action">Ускорение вниз</span>
+                            </div>
+                            <div class="control-item">
+                                <span class="key">↑</span>
+                                <span class="action">Поворот</span>
+                            </div>
+                            <div class="control-item">
+                                <span class="key">Пробел</span>
+                                <span class="action">Мгновенное падение</span>
+                            </div>
+                            <div class="control-item">
+                                <span class="key">P</span>
+                                <span class="action">Пауза</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="info-box">
+                        <h3><i class="fas fa-trophy"></i> Рекорды</h3>
+                        <div id="highScores" class="scores-list">
+                            Загрузка...
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="game-over-modal" id="gameOverModal">
+            <div class="modal-content">
+                <h2>Игра окончена!</h2>
+                <p>Ваш счет: <span id="finalScore">0</span></p>
+                <div class="name-input">
+                    <input type="text" id="playerName" placeholder="Введите ваше имя" maxlength="10">
+                    <button id="saveScoreBtn" class="btn btn-save">
+                        <i class="fas fa-save"></i> Сохранить результат
+                    </button>
+                </div>
+                <button id="playAgainBtn" class="btn btn-play-again">
+                    <i class="fas fa-play-circle"></i> Играть снова
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='tetris.js') }}"></script>
+</body>
+</html>
